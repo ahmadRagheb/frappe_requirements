@@ -5,13 +5,9 @@ frappe.pages['doctype-relation'].on_page_load = function(wrapper) {
 		single_column: true
 	});
 
-	frappe.require("assets/frappe_requirements/js/go.js");
-
+	frappe.require("assets/frappe_requirements/js/go.js", function() {
+ 
 	page.main.html(frappe.render_template("doctype_relation", {}));
-
-
-
-
 
     var $ = go.GraphObject.make;  // for conciseness in defining templates
 
@@ -162,4 +158,5 @@ frappe.pages['doctype-relation'].on_page_load = function(wrapper) {
 					})
 				}
 			});    
+    });
 }
