@@ -1,22 +1,21 @@
 # -*- coding: utf-8 -*-
-from setuptools import setup, find_packages
-try: # for pip >= 10
-	from pip._internal.req import parse_requirements
-except ImportError: # for pip <= 9.0.3
-	from pip.req import parse_requirements
 
-version = '0.0.1'
-requirements = parse_requirements("requirements.txt", session="")
+from setuptools import setup, find_packages
+
+with open("requirements.txt") as f:
+	install_requires = f.read().strip().split("\n")
+
+# get version from __version__ variable in frappe_aws/__init__.py
+from frappe_aws import __version__ as version
 
 setup(
-	name='frappe_requirements',
+	name="frappe_requirements",
 	version=version,
-	description='FRS helps system analyst to work side by side with developers creating a perfect systemm',
-	author='Matajer.sa',
-	author_email='sami@matajer.sa',
+	description="FRS helps system analyst to work side by side with developers creating a perfect system",
+	author="Accurate Systems",
+	author_email="inf0@accuratesystems.com.sa",
 	packages=find_packages(),
 	zip_safe=False,
 	include_package_data=True,
-	install_requires=[str(ir.req) for ir in requirements],
-	dependency_links=[str(ir._link) for ir in requirements if ir._link]
+	install_requires=install_requires
 )
